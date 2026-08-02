@@ -63,6 +63,16 @@ mvn clean test
 ```
 JaCoCo report: `target/site/jacoco/index.html` (build fails if line coverage < 80%, enforced via the `jacoco-check` goal).
 
+### Code Quality (SonarQube)
+A `docker-compose.yml` is included to easily spin up a local SonarQube server:
+```bash
+docker-compose up -d
+```
+Once it starts (on `http://localhost:9000`), run the analysis:
+```bash
+mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=admin
+```
+
 ### Run with Docker
 ```bash
 docker build -t booking-system .
@@ -94,6 +104,12 @@ every subsequent request.
 | POST | `/bookings` | USER | Book a slot (`{ "slotId": 1 }`) |
 | POST | `/bookings/{id}/cancel` | USER | Cancel **your own** booking |
 | POST | `/admin/bookings/{id}/cancel` | ADMIN | Cancel **any** booking |
+
+### Interactive API Documentation (Swagger UI)
+The application includes Swagger UI for easy, interactive API testing. 
+1. Start the application.
+2. Visit **[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)**.
+3. Use the **Authorize** button to paste your JWT token and test secured endpoints directly from the browser.
 
 ### Example flow
 ```bash

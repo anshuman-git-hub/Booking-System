@@ -34,16 +34,6 @@ public class Slot {
     @Builder.Default
     private SlotStatus status = SlotStatus.AVAILABLE;
 
-    /**
-     * Optimistic locking version column.
-     * Hibernate automatically increments this on every UPDATE and includes
-     * it in the WHERE clause (WHERE id = ? AND version = ?). If two
-     * transactions read the same version and both try to update, only the
-     * first commit succeeds; the second gets an
-     * {@link jakarta.persistence.OptimisticLockException}, which we translate
-     * into a 409 Conflict at the service layer. This is what prevents the
-     * double-booking race condition without any in-memory locks.
-     */
     @Version
     @Column(nullable = false)
     private Long version;
