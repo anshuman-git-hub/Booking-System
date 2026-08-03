@@ -271,3 +271,10 @@ A `Dockerfile` is included (multi-stage Maven build → JRE runtime image).
 To deploy on Render/Railway: point the service at this repo, it auto-detects
 the `Dockerfile`, set the `JWT_SECRET` env var, and expose port `8080`.
 
+## Deployment is done 
+Live API:
+https://booking-system-oc4z.onrender.com
+
+Swagger:
+https://booking-system-oc4z.onrender.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
+
